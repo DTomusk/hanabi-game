@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="Hanabi/Hanabi.csproj" />
+  <Project Path="HanabiTests/HanabiTests.csproj" />
+</Solution>
