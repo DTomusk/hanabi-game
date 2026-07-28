@@ -22,6 +22,26 @@ public record CardInformation
     {
         Value = new ValueInformation(value, turnLearned);
     }
+
+    public void PrintInformation()
+    {
+        if (Colour != null)
+        {
+            Console.WriteLine($"Colour: {Colour.Colour}, Turn Learned: {Colour.TurnLearned}");
+        }
+        else
+        {
+            Console.WriteLine("Colour: Unknown");
+        }
+        if (Value != null)
+        {
+            Console.WriteLine($"Value: {Value.Value}, Turn Learned: {Value.TurnLearned}");
+        }
+        else
+        {
+            Console.WriteLine("Value: Unknown");
+        }
+    }
 }
 
 public record ColourInformation(CardColour Colour, int TurnLearned);

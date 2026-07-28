@@ -3,16 +3,10 @@
 public class Player
 {
     public Board Board { get; init; }
-    public IList<CardInformation> CardInformation { get; private set; }
 
     public Player(Board board)
     {
         Board = board;
-        CardInformation = new List<CardInformation>();
-        foreach (var card in Board.Cards)
-        {
-            CardInformation.Add(new CardInformation(0));
-        }
     }
 
     // Take all the information they can take into account 
@@ -27,15 +21,7 @@ public class Player
         for (int i = 0; i < Board.Cards.Count; i++)
         {
             var card = Board.Cards[i];
-            var cardInfo = CardInformation[i];
-            if (colour.HasValue && card.Colour == colour.Value)
-            {
-                cardInfo.SetColourInformation(colour.Value, moveNumber);
-            }
-            if (value.HasValue && card.Value == value.Value)
-            {
-                cardInfo.SetValueInformation(value.Value, moveNumber);
-            }
+            card.UpdateInformation(colour, value, moveNumber);
         }
     }
 }

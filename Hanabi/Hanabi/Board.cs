@@ -14,7 +14,7 @@ public class Board
         Console.WriteLine("Board:");
         foreach (var card in Cards)
         {
-            Console.WriteLine($"Card: {card.Value} of {card.Colour}");
+            card.PrintCard();
         }
         Console.WriteLine();
     }
