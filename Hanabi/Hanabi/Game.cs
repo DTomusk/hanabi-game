@@ -116,7 +116,7 @@ public class Game
     private void HandleGiveInformationMove(GiveInformationMove move)
     {
         Console.WriteLine("Giving information");
-        var targetPlayer = Players[move.PlayerIndex];
+        var targetPlayer = Players.First(p => p.Id == move.PlayerId);
         targetPlayer.UpdateInformation(move.Colour, move.Value, TurnNumber);
         InformationTokens--;
     }

@@ -22,20 +22,20 @@ public record DiscardCardMove : Move
 
 public record GiveInformationMove : Move
 {
-    public int PlayerIndex { get; private set; }
+    public Guid PlayerId { get; private set; }
     public CardColour? Colour { get; private set; }
     public int? Value { get; private set; }
 
-    public GiveInformationMove(int playerIndex, CardColour colour)
+    public GiveInformationMove(Guid playerId, CardColour colour)
     {
-        PlayerIndex = playerIndex;
+        PlayerId = playerId;
         Colour = colour;
         Value = null;
     }
 
-    public GiveInformationMove(int playerIndex, int value)
+    public GiveInformationMove(Guid playerId, int value)
     {
-        PlayerIndex = playerIndex;
+        PlayerId = playerId;
         Colour = null;
         Value = value;
     }
