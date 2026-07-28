@@ -21,45 +21,21 @@ public class Player
     {
         return new PlayCardMove(0);
     }
-}
 
-public abstract record Move { }
-
-public record PlayCardMove : Move
-{
-    public int CardIndex { get; private set; }
-    public PlayCardMove(int cardIndex)
+    public void UpdateInformation(CardColour? colour, int? value, int moveNumber)
     {
-        CardIndex = cardIndex;
-    }
-}
-
-public record DiscardCardMove : Move
-{
-    public int CardIndex { get; private set; }
-    public DiscardCardMove(int cardIndex)
-    {
-        CardIndex = cardIndex;
-    }
-}
-
-public record GiveInformationMove : Move
-{
-    public int PlayerIndex { get; private set; }
-    public CardColour? Colour { get; private set; }
-    public int? Value { get; private set; }
-
-    public GiveInformationMove(int playerIndex, CardColour colour)
-    {
-        PlayerIndex = playerIndex;
-        Colour = colour;
-        Value = null;
-    }
-
-    public GiveInformationMove(int playerIndex, int value)
-    {
-        PlayerIndex = playerIndex;
-        Colour = null;
-        Value = value;
+        for (int i = 0; i < Board.Cards.Count; i++)
+        {
+            var card = Board.Cards[i];
+            var cardInfo = CardInformation[i];
+            if (colour.HasValue && card.Colour == colour.Value)
+            {
+                cardInfo.SetColourInformation(colour.Value, moveNumber);
+            }
+            if (value.HasValue && card.Value == value.Value)
+            {
+                cardInfo.SetValueInformation(value.Value, moveNumber);
+            }
+        }
     }
 }

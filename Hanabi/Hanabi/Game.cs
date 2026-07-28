@@ -8,6 +8,7 @@ public class Game
     public IList<Card> DiscardPile { get; private set; }
     public int InformationTokens { get; private set; }
     public int Strikes { get; private set; }
+    public int TurnNumber { get; private set; }
 
     public const int MAX_INFORMATION_TOKENS = 8;
     public const int MAX_STRIKES = 3;
@@ -35,6 +36,7 @@ public class Game
 
         InformationTokens = MAX_INFORMATION_TOKENS;
         Strikes = 0;
+        TurnNumber = 0;
 
         Center = new Center();
     }
@@ -44,6 +46,7 @@ public class Game
         // Game loop
         while (true)
         {
+            TurnNumber++;
             foreach (var player in Players)
             {
                 PrintGameState(player.Board);
@@ -113,7 +116,8 @@ public class Game
     private void HandleGiveInformationMove(GiveInformationMove move)
     {
         Console.WriteLine("Giving information");
-        // TODO: update other player's information
+        var targetPlayer = Players[move.PlayerIndex];
+        targetPlayer.UpdateInformation(move.Colour, move.Value, TurnNumber);
         InformationTokens--;
     }
 

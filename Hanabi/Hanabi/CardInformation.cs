@@ -1,9 +1,9 @@
 ﻿namespace Hanabi;
 
-public class CardInformation
+public record CardInformation
 {
-    public CardColour? Colour { get; private set; }
-    public int? Value { get; private set; }
+    public ColourInformation? Colour { get; private set; }
+    public ValueInformation? Value { get; private set; }
     public int TurnDrawn { get; private set; }
 
     public CardInformation(int turnDrawn)
@@ -13,13 +13,17 @@ public class CardInformation
         Value = null;
     }
 
-    public void SetColourInformation(CardColour colour)
+    public void SetColourInformation(CardColour colour, int turnLearned)
     {
-        Colour = colour;
+        Colour = new ColourInformation(colour, turnLearned);
     }
 
-    public void SetValueInformation(int value)
+    public void SetValueInformation(int value, int turnLearned)
     {
-        Value = value;
+        Value = new ValueInformation(value, turnLearned);
     }
 }
+
+public record ColourInformation(CardColour Colour, int TurnLearned);
+
+public record ValueInformation(int Value, int TurnLearned);
